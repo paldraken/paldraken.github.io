@@ -4,23 +4,31 @@
         <title>Context test</title>
     </head>
     <body>
-        <select id="org_selector">
-            <option value="org1">Орга 1</option>
-            <option value="org2">Орга 2</option>
-            <option value="org3">Орга 3</option>
-        </select>
+        <hr>
+        <p>
+              Сохранение текущей организации при открытиии ссылки в новом окне. <br>
+            За счет сохранения контекста активной вкладки в локал стораже по событию window.onfocus.
+        </p>
+        <hr>
+
+        <label style="font-size: 24px;">
+            Выбарть организацию контекст:
+            <select id="org_selector" style="font-size: 22px;">
+                <option value="org1">Орга 1</option>
+                <option value="org2">Орга 2</option>
+                <option value="org3">Орга 3</option>
+            </select>
+        </label>
+        
         <hr>
         <h1>Current org: <span id="big"></span></h1>
+        <br><br>
 
-        <button id=btn>show current</button>
-        <br>
-
-        <a target="_blank" href="">Please click me with ctrl + shift + reset.</a>
+        <a target="_blank" href="#">Please click me with ctrl + shift + reset.</a>
 
     </body>
     <script type="text/javascript">
         (function() {
-            let context = null;
             document.addEventListener('DOMContentLoaded', function() {
                 const currentOrg = localStorage.getItem('xxx_ORGA_xxx') || 'org1';
                 initApp(currentOrg);
@@ -37,12 +45,6 @@
                 function storeCurrent(ctx) {
                     localStorage.setItem('xxx_ORGA_xxx', ctx);
                 }
-
-                document.getElementById('btn').addEventListener('click', (e) => {
-                    e.preventDefault();
-                    alert(current);
-                });
-
                 
                 selEl.addEventListener('change', (e) => {
                     current = selEl.value;
